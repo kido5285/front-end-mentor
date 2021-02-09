@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | FAQ Accordion Card</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; position: absolute; bottom: 0; left: 50;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(hsl(273, 75%, 66%), hsl(240, 73%, 65%));
+    }
+
+    .card {
+      outline: none;
+      display: flex;
+      overflow: hidden;
+      height: fit-content;
+      background-color: #fff;
+      width: 1150px;
+      align-items: center;
+      flex-direction: row;
+      position: relative;
+      border-radius: 25px;
+      padding: 5rem 0;
+    }
+
+    .pattern-img {
+      position: absolute;
+      top: -300px;
+      left: -400px;
+      align-self: flex-start;
+    }
+
+    .logo {
+      flex: 1;
+    }
+
+    .woman-img {
+      justify-self: flex-start;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-top: 50px;
+    }
+
+    .box-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-left: 10px; 
+    }
+
+    .faq {
+      z-index: 99999;
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      font-family: sans-serif;
+      flex: 0.75;
+    }
+
+    .question {
+      width: 70%;
+      cursor: pointer;
+    }
+
+    .ques {
+      display: flex;
+      color: hsl(240, 6%, 50%);
+      font-weight: 600;
+      opacity: 0.7;
+      font-size: 15px;
+      justify-content: space-between;
+      padding:  10px 0 20px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+      transition: all 0.5s;
+    }
+
+    .ques:hover {
+      color: rgb(244, 123, 86);
+    }
+
+    .ques img {
+      height: 10px;
+      margin-top: 5px;
+      transition: all 0.5s;
+    }
+
+    .question > .ans {
+      display: none;
+      padding: 10px 0;
+      font-size: 12.5px;
+      color:hsl(240, 6%, 50%);
+      transition: all 0.5s;
+    }
+
+    .rotate {
+      transform: rotate(180deg)
+    }
+
+    @media (max-width: 375px) {
+      .card {
+        position: relative;
+        height: fit-content;
+        padding: 100px 0;
+      }
+
+      .logo {
+        position: relative;
+      }
+
+      .woman-img {
+        z-index: 9999999;
+        top: -400px;
+        margin-top: 0;
+        justify-self: center;
+      }
+
+      .ques {
+        justify-content: start;
+      }
+
+      .ques img {
+        margin-left: 10px;
+      }
+
+      .pattern-img {
+        z-index: 999999;
+        top: -300px;
+        left: 20px;
+        justify-self: center;
+      }
+
+      .question {
+        width: 350px;
+        cursor: pointer;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="card" class="card">
+    <div id="logo" class="logo">
+      <img src="images/illustration-box-desktop.svg" class="box-img">
+      <img src="images/illustration-woman-online-desktop.svg" class="woman-img">
+      <img src="images/bg-pattern-desktop.svg" class="pattern-img">
+    </div>
+    <div id="faq" class="faq">
+      <h1 id="title">FAQ</h1>
+      <div class="questions">
+        <div class="question">
+          <div class='ques' onclick='handleClick(1)'>
+            <span>How many team members can I invite</span>
+            <img src="images/icon-arrow-down.svg" id="1">
+          </div>
+          <div class="ans" id="11"> 
+            <span>You can invite up to 2 additional users on the Free plan. There is no limit on team members for the Premium plan.</span>
+          </div>
+        </div>
+        <div class="question">
+          <div class='ques' onclick='handleClick(2)'>
+            <span>What is the maximum file upload size?</span>
+            <img src="images/icon-arrow-down.svg" id="2">
+          </div>
+          <div class="ans" id="22">
+            <span>No more than 2GB. All files in your account must fit your allotted storage space.</span>
+          </div>
+        </div>
+        <div class="question">
+          <div class='ques' onclick='handleClick(3)'>
+            <span>How do I reset my password?</span>
+            <img src="images/icon-arrow-down.svg" id="3">
+          </div>
+          <div class="ans" id="33">
+            <span>Click "Forgot password" from the login page or "Change password" from your profile page. A reset link will be emailed to you.</span>
+          </div>
+        </div>
+        <div class="question">
+          <div class='ques' onclick='handleClick(4)'>
+            <span>Can I cancel my subscription?</span>
+            <img src="images/icon-arrow-down.svg" id="4">
+          </div>
+          <div class="ans" id="44">
+            <span>Yes! Send us a message and we'll process your request no questions asked.</span>
+          </div>
+        </div>
+        <div class="question">
+          <div class='ques' onclick='handleClick(5)'>
+            <span>Do you provide additional support?</span>
+            <img src="images/icon-arrow-down.svg" id="5">
+          </div>
+          <div class="ans" id="55">
+            <span>Chat and email support is available 24/7. Phone lines are open during normal buisness hours.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+  <script>
+    let boxImg = document.querySelector('.box-img')
+    let womanImg = document.querySelector('.woman-img')
+    let patternImg = document.querySelector('.pattern-img')
+    window.onresize = resize;
+    function resize() {
+        if (window.innerWidth <= 375) {
+          boxImg.style.display = 'none';
+          womanImg.src = 'images/illustration-woman-online-mobile.svg'
+          patternImg.src = 'images/bg-pattern-mobile.svg'
+        } else {
+          boxImg.style.display = 'block';
+          womanImg.src = 'images/illustration-woman-online-desktop.svg';
+          patternImg.src = 'images/bg-pattern-desktop.svg';
+        }
+    }
+
+    function handleClick(id) {
+      let img = document.getElementById(`${id}`)
+      let ans = document.getElementById(`${id}${id}`)
+      let counter1 = 0;
+      let counter2 = 0;
+      if(img.classList.contains('rotate')) {
+        img.classList.remove('rotate')
+        ans.style.display = 'none'
+      } else {
+        img.classList.add('rotate')
+        ans.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
