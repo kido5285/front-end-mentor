@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Interactive pricing component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    .attribution { position: absolute; font-size: 11px; text-align: center; align-self: flex-end;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+    body {
+      display: flex;
+      justify-content: center;  
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .title {
+      position: absolute;
+      top: 100px;
+      width: 500px;
+      font-family: 'Manrope', sans-serif;
+      text-align: center;
+      left: calc(50%-500px);
+    }
+
+    .title h2 {
+      color: hsl(227, 35%, 25%);
+    }
+
+    .title p {
+      margin: 7px;
+      color: hsl(225, 20%, 60%);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .bg-circle {
+      position: absolute;
+      left: 35%;
+      top: -30px;
+      z-index: -1;
+    }
+
+    .bg-pattern {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      z-index: -2;
+    }
+
+    .main-content {
+      padding: 2rem;
+      display: flex;
+      position: relative;
+      width: 500px;
+      min-height: 370px;
+      height: fit-content;
+      box-shadow: 4px 6px 50x -20px rgba(0,0,0,0.75);
+      -webkit-box-shadow: 4px 6px 50px -20px rgba(0,0,0,0.75);
+      -moz-box-shadow: 4px 6px 50px -20px rgba(0,0,0,0.75);
+      background-color: hsl(0, 50%, 100%);
+      align-self: center;
+    }
+
+
+    .page-views:nth-child(1) {
+      letter-spacing: 1px;  
+    }
+
+    .price {
+      letter-spacing: 1px;
+      font-size: 15px;
+      font-weight: 600;
+      order: 3;
+      color: hsl(225, 20%, 60%);
+    }
+
+    #price {
+      font-size: 30px;
+      font-weight: 800;
+      color: hsl(227, 35%, 25%);
+    }
+
+    .pageviews {
+      letter-spacing: 2px;
+      order: 1;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 10px;
+      margin-right: auto;
+      color: hsl(225, 20%, 60%);
+      text-transform: uppercase;
+    }
+
+    .price-scale {
+      position: absolute;
+      order: 2;
+      width: 435px;
+      margin-top: 50px;
+      height: 10px;
+    }
+
+    .slider1 {
+      -webkit-appearance: none;
+      width: 435px;
+      height: 15px;
+      border-radius: 5px;  
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+    
+    .slider1::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%; 
+      background-color: hsl(174, 86%, 45%);
+      box-shadow: 3px 14px 37px 1px hsl(174, 86%, 45%);
+      -webkit-box-shadow: 3px 14px 37px 1px hsl(174, 86%, 45%);
+      -moz-box-shadow: 3px 14px 37px 1px hsl(174, 86%, 45%);
+      background-image: url('images/icon-slider.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: all 0.5s;
+      cursor: pointer;
+    }
+    
+    .slider1::-moz-range-thumb {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: hsl(174, 86%, 45%);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url('images/icon-slider.svg');
+      transition: all 0.5s;
+      cursor: pointer;
+    }
+
+    .up-control {
+      width: 100%;
+      order: 1;
+      position: relative;
+      height: fit-content;
+      min-height: 190px;
+      display: flex;
+      border-bottom: 2px solid rgba(133, 143, 173, 0.9);
+    }
+
+    .billing {
+      position: absolute;
+      top: 100px;
+      right: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      max-width: 435px;
+      font-family: 'Manrope', sans-serif;
+      margin: 30px 25px 25px 0;
+      width: 100%;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: hsl(174, 86%, 45%);
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px hsl(174, 86%, 45%);
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+    #monthly-billing {
+      margin: 7px;
+      margin-left: 80px;
+      font-size: 13px;
+      color: hsl(225, 20%, 60%);
+      font-weight: 600;
+    }
+
+    #yearly-billing {
+      margin: 7px;
+      font-weight: 600;
+      color: hsl(225, 20%, 60%);
+      font-size: 13px;
+    }
+
+    .discount {
+      background-color:  hsl(14, 92%, 95%);
+      color: hsl(15, 100%, 70%);
+      font-size: 13px;
+      margin-top: 7px;
+      border-radius: 10px;
+      padding: 0 5px;
+      height  : 19px;
+    }
+     
+    .bottom-control {
+      position: absolute;
+      display: flex;
+      top: 222px;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+      width: 87.5%;
+      max-height: 130px;
+      padding: 10px;
+      height: 100%;
+      order: 2;
+    }
+
+    .feauture {
+      margin: 7px;
+      font-size: 13px;
+      color: hsl(225, 20%, 60%);
+      font-family: 'Manrope';
+    }
+    
+    .start-trial {
+      padding: 10px 30px;
+      outline: none;
+      border: none;
+      background-color: hsl(227, 35%, 25%);
+      border-radius: 30px;
+      color: hsl(225, 20%, 60%);
+      cursor: pointer;
+    }
+
+    .start-trial:active {
+      color: hsl(223, 50%, 87%);
+    }
+
+    @media only screen and (max-width: 519px) {
+      .bg-pattern {
+        width: 120%;
+        height: 40%;
+      }
+
+      .title {
+        top: 50px;
+        margin-left: 30px;
+      }
+
+      .main-content {
+        width: 360px;
+        margin-left: 30px;
+      }
+
+      .up-control {
+        flex-direction: column;
+        min-height: 200px;
+      }
+
+      .pageviews {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .price {
+        margin-top: 55px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .price-scale {
+        width: 270px;
+      }
+
+      .billing {
+        top: 110px;
+        width: 350px;
+        justify-content: center;
+        right: -70px;
+      }
+
+      #monthly-billing {
+        margin: 0;
+        margin-top: 7px;
+        margin-right: 5px;
+        padding: 0;
+      }
+
+      #yearly-billing {
+        margin-left: 0;
+      }
+
+      .bottom-control {
+        flex-direction: column;
+      }
+
+      .start-trial {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="images/bg-pattern.svg" class="bg-pattern" alt="background pattern">
+  <div class="title">
+    <img src="images/pattern-circles.svg" class="bg-circle" alt="background-circle">
+    <h2>Simple, traffic-based pricing</h2>
+    <p>Sign-up for our 30-day trial. No credit card required.</p>
+  </div>
+  
+   
+  <div class="main-content">
+      <div class="up-control">
+        <span class="pageviews"><span id="pageviews-num"></span> Pageviews</span>
+        <span class="price"><span id="price">$</span> /<span id="month">month</span></span>
+        <input type="range" class="price-scale slider1" name="switch" min="0" max="100">
+        <div class="billing">
+          <span id="monthly-billing">Monthly Billing</span>
+          <label class="switch">
+            <input type="checkbox" id="checkbox" name="switch">
+            <span class="slider round"></span>
+          </label>
+          <span id="yearly-billing">Yearly Billing</span>
+          <div class="discount">
+            <span class="tag"><span id="tag">25% discount</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-control">
+        <div class="features">
+          <p class="feauture"><img src="images/icon-check.svg"/>  Unlimited websites</p>
+          <p class="feauture"><img src="images/icon-check.svg" />  100% data ownership</p>
+          <p class="feauture"><img src="images/icon-check.svg" />  Email reports</p>
+        </div>
+        <button class="start-trial">Start my trial</button>
+      </div>
+    </div>
+  
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Aw Yong</a>.
+  </div>
+  <script>
+    var slider = document.querySelector('.slider1')
+    var price = document.getElementById('price')
+    var viewpage = document.getElementById('pageviews-num')
+    var checkbox = document.getElementById('checkbox')
+    var tag = document.getElementById('tag')
+    var month = document.getElementById('month')
+    function resize() {
+      if(screen.width <= 519) {
+        tag.innerHTML = '-25%'
+      } else {
+        tag.innerHTML = '25% discount'
+      }
+      if(checkbox.checked === true) {
+        month.innerHTML = 'year'
+      }
+      if (checkbox.checked === false) {
+        month.innerHTML = 'month'
+      }
+    }
+
+    setInterval(resize, 100);
+    slider.addEventListener('change', function() {
+      let priceTag;
+      let viewpagenum;
+      if(checkbox.checked === false) {
+        priceTag = slider.value * 2.5;
+        viewpagenum = slider.value * 5;
+      }
+      if(checkbox.checked === true) {
+        priceTag = slider.value * 10;
+        viewpagenum = slider.value * 7;
+      }
+      if(viewpagenum === 0) {
+        viewpagenum = 5;
+      }
+      if(priceTag % 1 != 0) {
+        priceTag += '0';
+      }
+      price.innerHTML = `$${priceTag}`;
+      viewpage.innerHTML = `${viewpagenum}k`
+    })
+  </script>
+</body>
+</html>
