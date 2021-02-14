@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+  <title>Frontend Mentor | Loopstudios landing page</title>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .attribution {font-size: 11px; display: none; align-self: flex-end}
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    :root {
+      --opacity: 0;
+      --width: 0;
+      --maxWidth: 0;
+      --color: white;
+      --imgOpacity: 1;
+      --line3Width: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    .navbar {
+      z-index: 1;
+      position: absolute;
+      right: 10px;
+      margin: 20px 70px;
+      margin-top: 18px;
+    }
+
+    .items {
+      margin: 5px;
+      width: 100%;
+      justify-self: flex-end;
+      display: flex;
+    }
+
+    .item {
+      list-style: none;
+      margin: 10px;
+      font-weight: 400;
+      font-size: 15px;
+      font-family: 'Alata', sans-serif;
+      color: hsl(0, 0%, 100%);
+    } 
+
+    .no-decoration, a:link, a:visited {
+      text-decoration: none;
+    }
+
+    .no-decoration {
+      transition: all 1s;
+    }
+
+    .no-decoration:hover {
+      --width: 20px;
+    }
+
+    .line {
+      max-width: var(--width);
+      height: 2px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: hsl(0, 0%, 100%);
+      transition: all 500ms;
+    }
+
+    .item1 {
+      position: absolute;
+      top: 23px;
+      right: 30px;
+      list-style: none;
+      margin: 10px;
+      font-weight: 400;
+      font-size: 15px;
+      font-family: 'Alata', sans-serif;
+      color: hsl(0, 0%, 100%);
+    }
+
+    .home-img {
+      z-index: -2;
+      width: 100vw;
+      position: relative;
+      display: flex;
+      justify-self: center;
+      background-color: black;
+      height: fit-content;
+    }
+
+    .test {
+      position: absolute;
+      width: 100vw;
+    }
+
+    .logo {
+      z-index: 1;
+      position: absolute;
+      margin: 30px 100px;
+    }
+
+    .hero-bg {
+      position: relative;
+      z-index: 0;
+      height: auto;
+      width: 100%;
+      opacity: 0.5;
+    }
+
+    #home-title {
+      z-index: 1;
+      position: absolute;
+      top: 150px;
+      left: 100px;
+      font-size: 70px;
+      font-family: 'Josefin Sans', sans-serif;
+      text-transform: uppercase;
+      width: 555px;
+      padding: 50px;
+      outline: 1px solid hsl(0, 0%, 100%);
+      color: hsl(0, 0%, 100%);
+    }
+
+    .top-page {
+      position: relative;
+      width: 100vw;
+    }
+
+    .item1 {
+      display: none;
+    }
+
+    .text {
+      width: 450px;
+      height: fit-content;
+      align-self: flex-end;
+      padding: 50px;
+      margin-left: 450px;
+      margin-top: 250px;
+      background-color: white;
+    }
+
+    .text > h1 {
+      font-size: 50px;
+      font-family: 'Josefin Sans', sans-serif;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin: 10px 0;
+    }
+
+    .text > p {
+      font-size: 15px;
+      font-family: 'Alata';
+      color: hsl(0, 0%, 55%);
+      margin: 10px 0;
+    }
+
+    #Careers {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      margin: 100px auto;
+    }
+
+    #Careers img {
+      position: absolute;
+      z-index: -1;
+      left: 0;
+    }
+
+    #events {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        width: 1095px;
+      } 
+
+      .events-title {
+        width: fit-content;
+        font-size: 40px;
+        font-family: 'Josefin Sans';
+        font-weight: 300;
+        margin: 0 0 70px 0;
+        text-transform: uppercase;
+      }
+
+      .events-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: 1px solid;
+        background-color: white;
+        font-family: 'Alata';
+        font-weight: 400;
+        letter-spacing: 2px;
+        outline: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        padding: 7px 30px;
+        width: fit-content;
+        transition: all 1s;
+      }
+
+      .events-btn:hover {
+        color: white;
+        background-color: black;
+      }
+
+      .event-items {
+        max-width: 1000px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        width: 1000px;
+      }
+
+      .event-item {
+        position: relative;
+        margin: 10px;
+        cursor: pointer;
+      }
+
+      .event-img {
+        transition: all 1s;
+      }
+
+      .event-img:hover {
+        opacity: 0.6;
+      }
+
+      .event-item:hover {
+        --color: hsl(0, 0%, 55%);
+      }
+
+      .event-p {
+        position: absolute;
+        bottom: 30px;
+        left: 50px;
+        opacity: var(--imgOpacity);
+        font-size: 30px;
+        color: var(--color);
+        font-family: 'Josefin Sans';
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: black;
+        height: auto;
+        width: calc(100% - 20vw);
+        padding: 0 10vw;
+        padding-top: 25px;
+      }
+
+      .footer-logo-div {
+        margin: 10px 20px 10px 0;
+      }
+
+      .footer-navbar {
+        margin: 25px 15px;
+        margin-left: -23px;
+      }
+
+      .footer-navbar-items {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .footer-navbar-item {
+        list-style: none;
+        color: white;
+        padding-bottom: 10px;
+        font-family: 'Alata';
+        font-weight: 400;
+        margin: 0 20px;
+      }
+      
+      .footer-row2 {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .fab {
+        color: white;
+        background-color: black;
+        font-size: 25px;
+        margin: 20px 5px;
+        cursor: pointer;
+      }
+
+      .line1 {
+        max-width: var(--maxWidth);
+        height: 2px;
+        margin-top: -10px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: hsl(0, 0%, 100%);
+        transition: all 1s;
+      }
+
+      .footer-copywright {
+        margin: 5px 0;
+      }
+
+      .footer-p {
+        font-family: 'Alata';
+        font-weight: 400;
+        margin-top: 2px;
+        color: hsl(0, 0%, 55%);
+      }
+
+      .footer-social-media {
+        display: flex;
+        flex-direction: row;
+        margin-left: calc(100% - 147px);
+      }
+
+      .footer-social-media-item {
+        margin: 1px;
+      }
+
+      .footer-social-media-item:hover {
+        --maxWidth: 25px;
+      }
+
+    @media (max-width: 970px) {
+      .footer {
+        flex-direction: column;
+      }
+
+      .footer-social-media {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-copywright {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-navbar {
+        display: flex;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-navbar-items {
+        flex-direction: column;
+      }
+
+      .footer-navbar-item {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .footer-logo-div {
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+      
+    @media (max-width: 1050px) {
+      .text {
+        margin: 0;
+        padding: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70vw;
+        text-align: center;
+      }
+
+      #Careers {
+        flex-direction: column;
+      }
+
+      #Careers img {
+        position: relative;
+        width: 80vw;
+      }
+    }
+
+    @media (max-width: 1140px) {
+      #events {
+        width: 100vw;
+      }
+      .row {
+        flex-direction: column;
+        width: 100vw;
+      }
+
+      .event-item {
+        width: 100vw;
+        padding: 10vw;
+        margin: 0;
+      }
+
+      .event-img {
+        position: relative;
+        width: 80vw;
+        margin-top: -80px;
+        height: auto;
+      }
+
+      .event-p {
+        left: 15%;
+        top: 20%;
+      }
+
+      .event-items {
+        order: 2;
+      }
+
+      .events-title {
+        order: 1;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .events-btn {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        order: 3;
+      }
+      .events-btn {
+        margin-bottom: 50px;
+      }
+    }
+
+    #phone-menu {
+      z-index: 99999;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      color:hsl(0, 0%, 100%);
+      background-color: black;
+      top: 0;
+      transition: all 1s;
+    }
+
+    .move {
+      margin-left: 100vw;
+    }
+
+    .close-icon {
+      position: absolute;
+      top: 25px;
+      right: 70px;
+      cursor: pointer;
+    }
+
+    .mobile-menu-logo {
+      position: absolute;
+      top: 20px;
+      left: 70px;
+    }    
+
+    .mobile-menu-div {
+      position: absolute;
+      top: 190px;
+      left: 70px;
+    }
+
+    .mobile-menu-items {
+      list-style-type: none;
+      font-size: 25px;
+      text-transform: uppercase;
+      font-family: 'Josefin Sans';
+      font-weight: 300;
+    }
+
+    .mobile-menu-item {
+      display: flex;
+      flex-direction: column;
+      margin: 15px 0;
+      cursor: pointer;
+    }
+
+    .line3 {
+      width: var(--line3Width);
+      height: 2px;
+      background-color: hsl(0, 0%, 100%);
+      transition: all 1s;
+    }    
+
+    .mobile-menu-item:hover {
+      --line3Width: 100%;
+    }
+  </style>
+</head>
+<body id="body">
+  <div id="phone-menu" class="move">
+    <img src="images/icon-close.svg" class="close-icon" />
+    <img src="images/logo.svg" class="mobile-menu-logo" />
+    <div class="mobile-menu-div">
+      <ul class="mobile-menu-items">
+        <li class="mobile-menu-item">about <div class="line3"></div></li>
+        <li class="mobile-menu-item">careers<div class="line3"></div></li>
+        <li class="mobile-menu-item">events<div class="line3"></div></li>
+        <li class="mobile-menu-item">product<div class="line3"></div></li>
+        <li class="mobile-menu-item">support<div class="line3"></div></li>
+      </ul>
+    </div>
+  </div>
+  <section id="About" class="top-page">
+    <a href="#">
+      <li class="item1"><img src="images/icon-hamburger.svg" id="first"/></li>
+    </a>
+    <nav class="navbar">
+      <ul class="items">
+        <a href="#" class="no-decoration"><li class="item">About</li><div class="line"></div></a>
+        <a href="#" class="no-decoration"><li class="item">Careers</li><div class="line"></div></a>
+        <a href="#" class="no-decoration"><li class="item">Events</li><div class="line"></div></a>
+        <a href="#" class="no-decoration"><li class="item">Products</li><div class="line"></div></a>
+        <a href="#" class="no-decoration"><li class="item">Support</li><div class="line"></div></a>
+      </ul>
+    </nav>
+    <img src="images/logo.svg" class="logo" alt="logo"/>
+    <div id="home-title">
+      <p>immersive</p>
+      <p>experience</p>
+      <p>that deliver</p>
+    </div>
+    <div class="home-img">
+      <div class="test"></div>
+      <img src='images/desktop/image-hero.jpg' class="hero-bg" alt="hero background" />
+    </div>
+  </section>
+  <section id="Careers">
+    <div class="career-section">
+      <img src="images/desktop/image-interactive.jpg" class="career-img"/>
+    </div>
+    <div class="career-section text">
+      <h1 class="career-h1">the leader in interactive vr</h1>
+      <p class="career-p">
+        Founded in 2011, Loopstudios has been producing world-class
+        virtual reality projects for some of the best companies around the
+        globe. Our award-winning creations have transformed
+        buisness through digital experiences that bind to their brand.
+      </p>
+    </div>
+  </section>
+  <section id="events">
+    <h1 class="events-title">our creations</h1>
+    <button class="events-btn">see all</button>
+    <div class="event-items">
+      <div class='row-1 row'>
+        <div class="event-item">
+          <img src="images/desktop/image-deep-earth.jpg" id="1" class="event-img-1 event-img"/>
+          <div class="event-p">
+            <p>deep</p>
+            <p>earth</p>
+          </div>
+        </div>
+        <div class="event-item">
+          <img src="images/desktop/image-night-arcade.jpg" id="2" class="event-img-1 event-img"/>
+          <div class="event-p">
+            <p>night</p>
+            <p>arcade</p>
+          </div>
+        </div>
+        <div class="event-item">
+          <img src="images/desktop/image-soccer-team.jpg" id="3" class="event-img-1 event-img"/>
+          <div class="event-p">
+            <p>soccer</p>
+            <p>team vr</p>
+          </div>
+        </div>
+        <div class="event-item">
+          <img src="images/desktop/image-grid.jpg" id="4" class="event-img-1 event-img"/>
+          <div class="event-p">
+            <p>the</p>
+            <p>grid</p>
+          </div>
+        </div>
+      </div>
+      <div class="row-2 row">
+        <div class="event-item">
+          <img src="images/desktop/image-from-above.jpg" id="5" class="event-img-1 event-img" />
+          <div class="event-p">
+            <p>from up</p>
+            <p>above vr</p>
+          </div>
+        </div>
+        <div class="event-item">
+          <img src="images/desktop/image-pocket-borealis.jpg" id="6" class="event-img-1 event-img" />
+          <div class="event-p">
+            <p>pocket</p>
+            <p>borealis</p>
+          </div>
+        </div>
+        <div class="event-item">
+          <img src="images/desktop/image-curiosity.jpg" id="7" class="event-img-1 event-img" />
+          <div class="event-p">
+            <p>the</p>
+            <p>curiosity</p>
+          </div>
+        </div>
+        <div class="event-item">
+          <img src="images/desktop/image-fisheye.jpg" id="8" class="event-img-1 event-img" />
+          <div class="event-p">
+            <p>make it</p>
+            <p>fisheye</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Aw Yong</a>.
+  </div>
+  <footer class="footer">
+    <div class="footer-row1">
+      <div class="footer-logo-div">
+        <img src="images/logo.svg" class="footer-logo"/>
+      </div>
+      <div class="footer-navbar">
+        <ul class="footer-navbar-items">
+          <a href="#" class="no-decoration"><li class='footer-navbar-item'>About</li><div class="line"></div></a>
+          <a href="#" class="no-decoration"><li class='footer-navbar-item'>Career</li><div class="line"></div></a>
+          <a href="#" class="no-decoration"><li class='footer-navbar-item'>Events</li><div class="line"></div></a>
+          <a href="#" class="no-decoration"><li class='footer-navbar-item'>Products</li><div class="line"></div></a>
+          <a href="#" class="no-decoration"><li class='footer-navbar-item'>Support</li><div class="line"></div></a>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-row2">
+      <div class="footer-social-media">
+        <div class="footer-social-media-item">
+          <i class="fab fa-facebook-square"></i>
+          <div class="line1"></div>
+        </div>
+        <div class="footer-social-media-item">
+          <i class="fab fa-twitter"></i>
+          <div class="line1"></div>
+        </div>
+        <div class="footer-social-media-item">
+          <i class="fab fa-pinterest"></i>
+          <div class="line1"></div>
+        </div>
+        <div class="footer-social-media-item">
+          <i class="fab fa-instagram"></i>
+          <div class="line1"></div>
+        </div>
+      </div>
+      <div class="footer-copywright">
+        <p class="footer-p">© 2021 Loopstudios.All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    var homeTitle = document.getElementById('home-title');
+    var homeImg = document.querySelector('.home-img');
+    var heroBg = document.querySelector('.hero-bg');
+    var height = document.getElementById('height');
+    var width = document.getElementById('width');
+    var logo = document.querySelector('.logo');
+    var navbar = document.querySelector('.navbar');
+    var navbarLogo = document.querySelector('.item1');
+    var line = document.querySelectorAll('.line');
+    var navbarAllItem = document.querySelectorAll('item');
+    var careerSection = document.querySelector('#Careers');
+    var careerImg = document.querySelector('.career-img');
+    var careerh1 = document.querySelector('.career-h1');
+    var careerP = document.querySelector('.career-p');
+    var careerText = document.querySelector('.text');
+    var eventSection = document.querySelector('#events');
+    var eventTitle = document.querySelector('.events-title');
+    var eventBtn = document.querySelector('.events-btn');
+    var eventItems = document.querySelector('.event-items');
+    var icons = document.querySelectorAll('.fab')
+    function heightAndWidth() {
+      //set window width and height
+      height.innerHTML = `Height: ${window.innerHeight}px`;
+      width.innerHTML = `Width: ${window.innerWidth}px`;
+      height.style.height = 'fit-content';
+      width.style.height = 'fit-content';
+    }
+    setInterval(heightAndWidth, 1000)
+    function topPageCheck() {
+      //var
+      var windowWidth = window.innerWidth;
+      var windowHeight = window.innerHeight;
+      //hero image change
+      if(windowWidth <= 533) {
+        heroBg.src = 'images/mobile/image-hero.jpg';
+        heroBg.style.opacity = '0.8'
+      } else {
+        heroBg.src = 'images/desktop/image-hero.jpg';
+        heroBg.style.opacity = '0.7'
+      }
+      //hero image width(phone)
+      if(windowWidth <= 770) {
+        heroBg.style.width = `${windowWidth}px`
+        homeImg.style.width = `${windowWidth}px`
+      } else {
+        heroBg.style.width = `100%`
+        homeImg.style.width = `100vw`
+      }
+      //change navbar
+      if(windowWidth <= 679) {
+        navbarLogo.style.display = 'block'
+        navbar.style.display = 'none'
+      } else {
+        navbarLogo.style.display = 'none'
+        navbar.style.display = 'block'
+      }
+      //positioning homeTitle (original = top: 100px; and larger than phone)
+      if(windowWidth > 1500) {
+        homeTitle.style.top = '500px'
+      } else {
+        homeTitle.style.top = '200px'
+      } 
+      if(windowWidth > 1000) {
+        homeTitle.style.top = '400px'
+      } else {
+        homeTitle.style.top = '200px'
+      } 
+      if(windowWidth > 850) {
+        homeTitle.style.top = '200px'
+      } else {
+        homeTitle.style.top = '200px'
+      }
+      if(windowWidth < 600) {
+        homeTitle.style.top = '225px'
+      } else {
+        homeTitle.style.top = '200px'
+      }
+      //positioning homeTitle (phone)
+      if(windowWidth <= 533) {
+        homeTitle.style.top = '400px'
+        homeTitle.style.left = '60px'
+      }
+      //sizing hero background (larger than phone)
+      if(windowWidth <= 1070) {
+        heroBg.style.height = '525px'
+      } else {
+        heroBg.style.height = 'auto'
+      }
+      if (windowWidth <= 821 && windowWidth > 533) {
+        heroBg.style.height = '470px'
+      } else {
+        heroBg.style.height = 'auto'
+      }
+      //positioning logo original margin: 30px 100px(phone);
+      if(windowWidth <= 533) {
+        logo.style.margin = '30px 50px'
+      }
+      //sizing home-title orginal width: 555px; padding: 50px; font-size: 70px;
+      if(windowWidth <= 1302) {
+        homeTitle.style.fontSize = '40px'
+        homeTitle.style.padding = '30px'
+        homeTitle.style.width = '300px'
+      } else {
+        homeTitle.style.fontSize = '70px'
+        homeTitle.style.padding = '50px'
+        homeTitle.style.width = '555px'
+      }
+      // Career section\
+      //special variable: event section image variable
+      //<img src="images/desktop/image-deep-earth.jpg" id="1" class="event-img-1 event-img"/>
+      //
+      var img1 = document.getElementById('1');
+      var img2 = document.getElementById('2');
+      var img3 = document.getElementById('3');
+      var img4 = document.getElementById('4');
+      var img5 = document.getElementById('5');
+      var img6 = document.getElementById('6');
+      var img7 = document.getElementById('7');
+      var img8 = document.getElementById('8');
+      // Event seciton
+      if(windowWidth <= 1140) {
+        img1.src = 'images/mobile/image-deep-earth.jpg';
+        img2.src = 'images/mobile/image-night-arcade.jpg';
+        img3.src = 'images/mobile/image-soccer-team.jpg';
+        img4.src = 'images/mobile/image-grid.jpg';
+        img5.src = 'images/mobile/image-from-above.jpg';
+        img6.src = 'images/mobile/image-pocket-borealis.jpg';
+        img7.src = 'images/mobile/image-curiosity.jpg';
+        img8.src = 'images/mobile/image-fisheye.jpg';
+      } else {
+        img1.src = 'images/desktop/image-deep-earth.jpg';
+        img2.src = 'images/desktop/image-night-arcade.jpg';
+        img3.src = 'images/desktop/image-soccer-team.jpg';
+        img4.src = 'images/desktop/image-grid.jpg';
+        img5.src = 'images/desktop/image-from-above.jpg';
+        img6.src = 'images/desktop/image-pocket-borealis.jpg';
+        img7.src = 'images/desktop/image-curiosity.jpg';
+        img8.src = 'images/desktop/image-fisheye.jpg';
+      }
+      // mobile-menu 
+      var hamburgerLogo = document.getElementById('first');
+      var closeLogo = document.querySelector('.close-icon')
+      var mobileMenu = document.getElementById('phone-menu')
+      var body = document.getElementById('body')
+      hamburgerLogo.addEventListener('click', () => {
+          mobileMenu.classList.remove('move')
+          body.style.overflowY = 'hidden'
+      })
+      closeLogo.addEventListener('click', () => {
+        mobileMenu.classList.add('move')
+        body.style.overflowY = 'visible'
+      })
+    }
+    setInterval(topPageCheck, 100)
+  </script>
+</body>
+</html>
